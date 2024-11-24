@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Python Version') {
+            steps {
+                sh "sudo apt update"
+                sh "sudo apt -y upgrade"
+                sh "python3 -v"
+            }
+        }
+        
+        stages {
+        stage('Docker Version') {
+            steps {
+                sh "docker -v"
+            }
+        }
+        
+        stages {
+        stage('Install Make') {
+            steps {
+                sh "sudo apt install make -y"
+                sh "sudo apt install make-guile -y"
+            }
+        }
+    }
+}
