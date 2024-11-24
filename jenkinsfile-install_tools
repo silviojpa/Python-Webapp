@@ -10,14 +10,12 @@ pipeline {
             }
         }
         
-        stages {
         stage('Docker Version') {
             steps {
                 sh "docker -v"
             }
         }
         
-        stages {
         stage('Install Make') {
             steps {
                 sh "sudo apt install make -y"
