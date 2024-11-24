@@ -111,7 +111,8 @@ make deploy
 Just don't, it's awful
 ---------------
 
-Objetivo da Tarefa:
+# Objetivo da Tarefa: "Utilize em uma provide o jenkins"
+- Obs: Para uso em maquina para automatizar o sudo no pipeline
 
 Acredito que o seu objetivo seja resolver o problema de senha no seu pipeline Jenkins, implementando uma das soluções propostas.
 
