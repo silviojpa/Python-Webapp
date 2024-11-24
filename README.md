@@ -118,11 +118,11 @@ Acredito que o seu objetivo seja resolver o problema de senha no seu pipeline Je
 Passo a Passo Detalhado (Considerando a Solução Ansible):
 
 Como a solução com Ansible é considerada mais segura e automatizada, vamos detalhar os passos para implementá-la:
-´´
-    Instalação do Ansible:
+
+- Instalação do Ansible:
         No servidor Jenkins (ou em um servidor de controle): Instale o Ansible seguindo as instruções oficiais para a sua distribuição Linux.
         Nos nós (máquinas onde o pipeline será executado): Instale o agente Ansible.
-
+```
     Criação do Playbook:
         Um playbook é um arquivo YAML que descreve as tarefas a serem executadas.
         Exemplo:
@@ -137,19 +137,19 @@ Como a solução com Ansible é considerada mais segura e automatizada, vamos de
                 update_cache: yes
 
         Use o código com cuidado.
-´´´
-    Explicação:
+```
+-  Explicação:
         hosts: all: Indica que a tarefa será executada em todos os hosts.
         become: yes: Executa as tarefas com privilégios de root.
         apt: update_cache: yes: Atualiza a lista de pacotes disponíveis.
 
-Integração com o Jenkins:
+-  Integração com o Jenkins:
 
     Instale o plugin Ansible: No seu Jenkins, instale o plugin Ansible para executar playbooks a partir do pipeline.
     Configure o plugin: Configure o plugin com as informações do seu inventário Ansible e credenciais de autenticação.
     Escreva a etapa no seu pipeline:
     Groovy
-
+   ```
     pipeline {
         agent any
         stages {
@@ -162,17 +162,17 @@ Integração com o Jenkins:
     }
 
     Use o código com cuidado.
-
-    Execução do Pipeline:
+  ``
+- Execução do Pipeline:
         Ao executar o pipeline, a etapa Ansible será acionada, executando o playbook e atualizando os pacotes nos nós.
 
-Outras Soluções:
+- Outras Soluções:
 
     Configurar o sudoers: Essa opção deve ser usada com cautela, pois pode comprometer a segurança do sistema.
     Usar o plugin de credenciais do Jenkins: Essa opção é útil para armazenar senhas de forma segura, mas ainda requer a configuração do sudo para permitir a autenticação.
     Usar o sudo com senha: Essa é a opção menos recomendada, pois exige que a senha seja digitada manualmente a cada execução.
 
-Considerações Adicionais:
+- Considerações Adicionais:
 
     Segurança: Ao utilizar o Ansible, é importante seguir as melhores práticas de segurança, como limitar os privilégios do usuário Ansible e utilizar variáveis para armazenar senhas de forma segura.
     Complexidade: A escolha da solução ideal dependerá da complexidade do seu ambiente e das suas necessidades específicas.
