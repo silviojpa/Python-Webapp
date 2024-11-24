@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/silviojpa/Python-Webapp.git'
+            }
+        }
+        
+        stage('Docker Build') {
+            steps {
+                sh "mmake image"
+            }
+        }
+        
+        stage('Docker Push') {
+            steps {
+               script{
+                   withDockerRegistry(credentialsId: '0473272c-91b7-4277-8cae-6cc99ab7e3ab', toolName: 'docker') {
+                    
+                        sh "make push"
+                 }
+               }
+            }
+        }
+        
+        stage('Docker Deploy') {
+            steps {
+               script{
+                   withDockerRegistry(credentialsId: '0473272c-91b7-4277-8cae-6cc99ab7e3ab', toolName: 'docker') {
+                    
+                        sh "make images"
+                        sh "docker run -d --rm -it -p 5000:5000 ssilvio69luiz/python-webapp:latest"
+                 }
+               }
+            }
+        }
+    }
+}
